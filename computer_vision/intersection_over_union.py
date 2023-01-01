@@ -1,5 +1,6 @@
+from typing import Tuple
 
-def iou(bbox1, bbox2):
+def iou(bbox1: list, bbox2: list) -> Tuple[float, list]:
     """
     This function calculate intersection over union between two bounding boxes.
 
@@ -9,8 +10,8 @@ def iou(bbox1, bbox2):
     @raises AssertionError: it's not a list.
     """
     
-    assert bbox1 == list
-    assert bbox2 == list
+    assert type(bbox1) == list
+    assert type(bbox2) == list
 
     bbox1_area = abs(bbox1[0] - bbox1[2]) * abs(bbox1[1] - bbox1[3])
     bbox2_area = abs(bbox2[0] - bbox2[2]) * abs(bbox2[1] - bbox2[3])
