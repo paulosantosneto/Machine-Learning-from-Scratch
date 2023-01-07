@@ -2,7 +2,7 @@ from intersection_over_union import iou
 from collections import Counter
 import numpy as np
 
-def mAP(bboxes: list, labels: list, iou_threshold=0.5, prob_threshold=0.5, num_class=1) -> float:
+def mAP(bboxes: list, labels: list, iou_threshold=0.5, num_class=1) -> float:
     """
     This function implement mean average precision metric for object detection.
 
