@@ -47,8 +47,3 @@ class LinearRegression(object):
     def derivative_w(self):
         
         return (-2 * sum([(y - (x*self.w + self.b)) * x for x, y, in zip(self.xs, self.ys)])) / len(self.xs)
-
-
-lr = LinearRegression([30, 40, 50], [40, 50, 60], learning_rate=0.0001, epochs=10)
-result = lr.fit()
-print(result)
