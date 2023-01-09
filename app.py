@@ -11,6 +11,8 @@ from streamlit_echarts import st_echarts
 import json
 from src import *
 import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
 
 def hex_to_rgb(hex):
   rgb = []
@@ -53,11 +55,11 @@ def linear_regression():
         csv_file = st.file_uploader("Upload your data", type=["csv"])
 
         if csv_file is not None:
-          learning_rate = float(st.selectbox("Learning rate", ["1.0", "0.1", "0.001", "0.0001"], index=2))
+          learning_rate = float(st.selectbox("Learning rate", ["1.0", "0.1", "0.01", "0.001", "0.0001"], index=2))
           epochs = int(st.selectbox("Epochs", ["1", "10", "20", "50", "100", "500", "1000", "10000"], index=4))
           data = pd.read_csv(csv_file, header=0)
           columns = st.multiselect("Select two columns", data.columns)
-          if len(columns) >= 2: 
+          if len(columns) == 2: 
               xs = data.iloc[1:, data.columns.get_loc(columns[0])].values
               ys = data.iloc[1:, data.columns.get_loc(columns[1])].values
 
@@ -87,11 +89,66 @@ def linear_regression():
     st.markdown("# Multiple Linear Regression")
 
     with st.expander("Theory "):
-        st.write("in progress") 
+      st.write("in progress") 
 
     with st.expander("Visualization "):
-        st.write("in progress")
+        csv_file = st.file_uploader("Upload your data", type=["csv"], key="multiple linear regression")
 
+        if csv_file is not None:
+          learning_rate_mlr = float(st.selectbox("Learning rate", ["1.0", "0.1", "0.01", "0.001", "0.0001"], index=2, key="mlr lr"))
+          epochs_mlr = int(st.selectbox("Epochs", ["1", "10", "20", "50", "100", "500", "1000", "10000"], index=4, key="mlr epochs"))
+          data_mlr = pd.read_csv(csv_file, header=0)
+          columns = st.multiselect("Select two columns", data_mlr.columns)
+          
+          if len(columns) == 3:
+              
+              df = data_mlr[[columns[0], columns[1], columns[2]]]
+          
+              for column in df.columns:
+                df[column] = df[column]  / df[column].abs().max()
+                
+              xs = df.iloc[1:, df.columns.get_loc(columns[0])].values.tolist()
+              ys = df.iloc[1:, df.columns.get_loc(columns[1])].values.tolist()
+              zs = df.iloc[1:, df.columns.get_loc(columns[2])].values.tolist()
+              xss = []
+              zss = []
+              
+              for x, y in zip(xs, ys):
+                xss.append([x, y])
+
+              for z in zs:
+                zss.append(z)
+              
+           
+              fig = px.scatter_3d(df, x=columns[0], y=columns[1], z=columns[2], template="plotly_white")
+              fig.update_traces(marker_size = 2)
+              st.plotly_chart(fig)
+              apply_mlr = st.button("Apply Multiple Linear Regression")
+
+              if apply_mlr:
+                mlr = MultipleLinearRegression(xss, zss, learning_rate=learning_rate_mlr, epochs=epochs_mlr)
+                results = mlr.fit()
+                
+                
+                light_yellow = [[0, '#b6d7a8'], [1, '#b6d7a8']]
+                x = np.linspace(0, 1.0, 100)
+                y = np.linspace(0, 1.0, 100)
+                cont = 0
+                z= np.ones((100,100))
+                
+                for j in range(100):
+                  for i in range(100):
+                    z[j][i] = mlr.predict([x[i], y[i]])
+                
+                
+                
+                fig_r = px.scatter_3d(df, x=columns[0], y=columns[1], z=columns[2], template="plotly_white")
+                fig_r.update_traces(marker_size = 2)
+                fig_r.add_trace(go.Surface(x=x, y=y, z=z, colorscale=light_yellow,  showscale=False, opacity=0.5))
+                st.plotly_chart(fig_r)
+              
+
+                            
 def logistic_regression():
 
     pass

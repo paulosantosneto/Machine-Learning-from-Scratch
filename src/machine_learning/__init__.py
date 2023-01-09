@@ -1,1 +1,2 @@
 from .linear_regression import LinearRegression
+from .multiple_linear_regression import MultipleLinearRegression

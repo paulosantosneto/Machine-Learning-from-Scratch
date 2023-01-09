@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Artificial Intelligence from Scratch
+# Machine Learning from Scratch
 
 At first, the purpose of this project is to provide the implementation from scratch of tools and algorithms commonly used in machine learning and deep learning. In parallel to the algorithms, an interface is developed for the theoretical visualization and explanation of the practices, making it a more interactive environment for the user.
 
