@@ -27,7 +27,8 @@ def iou(bbox1: list, bbox2: list) -> Tuple[float, list]:
     
     if (bbox_intersection[2] - bbox_intersection[0]) < 0 or (bbox_intersection[3] - bbox_intersection[1]) < 0:
         intersection_area = 0
-    iou_ = intersection_area / (bbox1_area + bbox2_area - intersection_area + 1e-6)
 
-    return iou_, bbox_intersection
+    iou_value = intersection_area / (bbox1_area + bbox2_area - intersection_area + 1e-6)
+
+    return iou_value, bbox_intersection
 
