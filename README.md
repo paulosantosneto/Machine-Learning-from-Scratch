@@ -4,7 +4,7 @@
 
 At first, the purpose of this project is to provide the implementation from scratch of tools and algorithms commonly used in machine learning and deep learning. In parallel to the algorithms, an interface is developed for the theoretical visualization and explanation of the practices, making it a more interactive environment for the user.
 
-![](https://github.com/paulosantosneto/deep-learning-algorithms-from-scratch/blob/main/interface.gif)
+![](https://github.com/paulosantosneto/deep-learning-algorithms-from-scratch/blob/main/app.gif)
 
 # Instalation
 

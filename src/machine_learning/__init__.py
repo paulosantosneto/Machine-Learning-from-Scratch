@@ -1,2 +1,4 @@
 from .linear_regression import LinearRegression
 from .multiple_linear_regression import MultipleLinearRegression
+from .logistic_regression import LogisticRegression
+from .k_nearest_neighbor import KNearestNeighbor

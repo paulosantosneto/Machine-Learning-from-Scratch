@@ -30,7 +30,7 @@ def iou_plot():
 
     st.markdown("# Intersection Over Union (IoU)")
     st.write("The IoU metric indicates how close the predicted bounding box is to the true label. The numeric indicator varies between 0 and 1, and can be calculated from the formula below.")
-    st.latex(r'''IoU = \frac{pred \cup true}{pred \cap true}''')
+    st.latex(r'''IoU = \frac{pred \cap true}{pred \cup true}''')
         
     ID = ""
     image = upload_image(ID)
